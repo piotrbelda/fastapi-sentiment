@@ -1,0 +1,19 @@
+body {
+    background-color: sandybrown;
+}
+
+.header {
+    text-align: center;
+    font-size: 40px;
+    font-style: italic;
+    position: sticky;
+    background-color: orangered;
+    color: white;
+    padding: 30px;
+    font-family: 'Caveat', cursive;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
