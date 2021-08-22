@@ -1,6 +1,7 @@
 from tortoise.models import Model
 from tortoise.fields.data import BooleanField
 from tortoise.fields import TextField, DatetimeField
+from tortoise.contrib.pydantic import pydantic_model_creator
 
 class TextSentiment(Model):
     content = TextField()
@@ -10,3 +11,5 @@ class TextSentiment(Model):
     
     def __str__(self) -> str:
         return self.description
+    
+SentimentSchema = pydantic_model_creator(TextSentiment)

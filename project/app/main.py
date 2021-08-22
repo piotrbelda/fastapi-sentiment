@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import logging
-from app.api import ping
+from app.api import ping, sentiments
 from app.db import init_db
 
 log = logging.getLogger('uvicorn')
@@ -8,6 +8,7 @@ log = logging.getLogger('uvicorn')
 def create_application() -> FastAPI:
     application = FastAPI()
     application.include_router(ping.router)
+    application.include_router(sentiments.router, prefix="/sentiments", tags=["sentiments"])
     return application
 
 app = create_application()
