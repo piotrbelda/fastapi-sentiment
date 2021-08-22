@@ -25,7 +25,20 @@
     </div>
 
     {% for sentiment in sentiments %}
-    <h1>Content: {{ sentiment.content }} - Description: {{ sentiment.description }} - Sentiment: {{ sentiment.value }}</h1>
+    <div id="sentiment">
+        <h1>Content: {{ sentiment.content }} - Description: {{ sentiment.description }} - Sentiment: {{ sentiment.value }}</h1>
+    </div>
     {% endfor %}
+
+    <ul>
+        <li>Python 3.9</li>
+        <li>FastAPI</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>TensorFlow 2.x</li>
+        <li>JavaScript</li>
+    </ul>
+
+    <script src="{{ url_for('static', path='script.js') }}"></script>
 </body>
 </html>
