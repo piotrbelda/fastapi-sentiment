@@ -13,7 +13,7 @@ services:
       - TESTING=0
       - DATABASE_URL=postgres://postgres:postgres@web-db:5432/web_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@web-db:5432/web_test
-      - STATIC_PATH=/usr/src/app/app/static
+      - STATIC_PATH=/usr/src/app/static
     depends_on:
       - web-db
 

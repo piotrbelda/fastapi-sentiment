@@ -5,5 +5,10 @@ tortoise-orm==0.17.4
 aerich==0.5.3
 pytest==6.2.4
 requests==2.25.1
-aiofiles
-Jinja2
+aiofiles==0.6.0
+Jinja2==3.0.1
+gunicorn==20.1.0
+pytest-cov==2.12.1
+flake8==3.9.2
+black==21.6b0
+isort==5.9.1
