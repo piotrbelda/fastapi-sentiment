@@ -22,3 +22,14 @@ async def get(id: int) -> Union[dict, None]:
 async def get_all() -> List:
     summaries = await TextSentiment.all().values()
     return summaries
+
+async def delete(id: int) -> int:
+    sentiment = await TextSentiment.filter(id=id).first().delete()
+    return sentiment
+
+async def put(id: int, payload: SentimentPayloadSchema) -> Union[dict, None]:
+    sentiment = await TextSentiment.filter(id=id).update(content=payload.content, description=payload.description, sentiment=payload.sentiment)
+    if sentiment:
+        updated_sentiment = await TextSentiment.filter(id=id).first().values()
+        return updated_sentiment[0]
+    return None

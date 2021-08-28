@@ -8,3 +8,6 @@ class SentimentPayloadSchema(BaseModel):
 
 class SentimentResponseSchema(SentimentPayloadSchema):
     id: int
+
+class SentimentUpdatePayloadSchema(SentimentPayloadSchema):
+    sentiment: bool
