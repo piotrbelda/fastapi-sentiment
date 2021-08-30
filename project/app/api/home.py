@@ -17,7 +17,7 @@ async def home(request: Request):
     all_sentiments = await get_all()
     sentiments = [
         {
-            "content": sentiment["content"],
+            "content": '"' + sentiment["content"] + '"',
             "description": sentiment["description"],
             "sentiment": "positive" if sentiment["sentiment"] else "negative",
             "created_at": str(sentiment["created_at"]).split(".")[0]
