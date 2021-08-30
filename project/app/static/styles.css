@@ -29,9 +29,20 @@ html, body {
     box-shadow: 5px 10px indigo;
 }
 
-#sentiment:hover, #sentiment:active {
-    background-color: darkgrey;
+.positivehov:hover, .positivehov:active {
+    background-color: rgb(110, 251, 110) !important; 
+}
+
+.negativehov:hover, .negativehov:active {
+    background-color: rgb(243, 104, 104) !important; 
+}
+
+.positivehov:hover, .positivehov:active, .negativehov:hover, .negativehov:active {
     cursor: pointer;
+}
+
+#sentiment:active > h3, #sentiment:hover > h3 {
+    font-size: 24px;
 }
 
 .positive {
