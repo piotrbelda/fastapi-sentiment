@@ -1,17 +1,22 @@
 from typing import List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, BackgroundTasks
 
 from app.api import crud
 from app.models.pydantic import SentimentPayloadSchema, SentimentResponseSchema, SentimentUpdatePayloadSchema
 from app.models.tortoise import SentimentSchema
+from app.api.sentiment_predictor import predict_sentiment
 
 router = APIRouter()
 
 
 @router.post("/", response_model=SentimentResponseSchema, status_code=201)
-async def create_sentiment(payload: SentimentPayloadSchema) -> SentimentResponseSchema:
+async def create_sentiment(payload: SentimentPayloadSchema, background_tasks: BackgroundTasks) -> SentimentResponseSchema:
+    
     sentiment_id = await crud.post(payload)
+    
+    background_tasks.add_task(predict_sentiment, sentiment_id, payload.content)
+    
     response_object = {
         "id": sentiment_id,
         "content": payload.content,
