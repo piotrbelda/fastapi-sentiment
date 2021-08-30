@@ -12,7 +12,7 @@ log = logging.getLogger("uvicorn")
 
 def create_application() -> FastAPI:
     application = FastAPI()
-    fullPath = os.path.dirname(__file__) + "/static"
+    fullPath = os.environ.get("STATIC_PATH") or os.path.dirname(__file__) + "/static"
     log.info(f"Mounting static files at: {fullPath}")
     application.mount(fullPath, StaticFiles(directory=fullPath), name="static")
     application.include_router(ping.router)
