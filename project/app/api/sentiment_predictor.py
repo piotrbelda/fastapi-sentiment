@@ -1,22 +1,32 @@
 from app.models.tortoise import TextSentiment
-
-from transformers import BertTokenizer, TFBertForSequenceClassification
 import tensorflow as tf
+import pickle
 import os
+    
 
-model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+currentDir = os.path.join(os.path.dirname(__file__), 'data') 
+    
+with open(os.path.join(currentDir, 'encoder.bin'), 'rb') as file:
+    encoder = pickle.load(file)
 
-weightsPath = os.path.join(os.path.dirname(__file__), "data/bert_weights.h5")
+model = tf.keras.models.load_model(os.path.join(currentDir, 'sentiment-lstm.h5'))
+model.load_weights(os.path.join(currentDir, 'sentiment-lstm-weights.h5'))
 
-model.load_weights(weightsPath)
+def pad_to_size(vec, size):
+    zeros = [0] * (size - len(vec))
+    vec.extend(zeros)
+    return vec
+
+def sample_predict(sentence, pad, model_):
+    encoded_sample_pred_text = encoder.encode(sentence)
+    if pad:
+        encoded_sample_pred_text = pad_to_size(encoded_sample_pred_text, 64)
+    encoded_sample_pred_text = tf.cast(encoded_sample_pred_text, tf.float32)
+    predictions = model_.predict(tf.expand_dims(encoded_sample_pred_text,0))
+    return predictions
 
 async def predict_sentiment(sentiment_id: int, sentiment: str) -> None:
     
-    tf_batch = tokenizer([sentiment], max_length=128, padding=True, truncation=True, return_tensors='tf')
-    tf_outputs = model(tf_batch)
-    tf_predictions = tf.nn.softmax(tf_outputs[0], axis=-1)
-    sentiment = tf.argmax(tf_predictions, axis=1)
-    sentiment = sentiment.numpy()[0]
+    prediction = int(round(sample_predict((sentiment), True, model)[0][0],1))
     
-    await TextSentiment.filter(id=sentiment_id).update(sentiment=bool(sentiment))
+    await TextSentiment.filter(id=sentiment_id).update(sentiment=bool(prediction))
