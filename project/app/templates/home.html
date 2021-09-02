@@ -46,6 +46,18 @@
     </div>
     {% endfor %}
 
+    <div id="sub">
+        <form method="POST" action="/">
+            <h3>SUBMIT YOUR SENTIMENT!</h3>
+            <label for="content">CONTENT: </label>
+            <input name="content" placeholder="Your sentiment">
+            <br>
+            <label for="description">DESCRIPTION: </label>
+            <input name="description" placeholder="Your description">
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+
     <script src="{{ url_for('static', path='script.js') }}"></script>
 </body>
 </html>

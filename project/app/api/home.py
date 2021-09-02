@@ -1,10 +1,11 @@
 import os
-
-from fastapi import APIRouter
+from fastapi import APIRouter, Form, BackgroundTasks, status
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
-
-from app.api.crud import get_all
+from fastapi.responses import RedirectResponse
+from app.api.sentiment_predictor import predict_sentiment
+from app.api.crud import get_all, post
+from app.models.pydantic import SentimentPayloadSchema
 
 router = APIRouter()
 
@@ -27,3 +28,14 @@ async def home(request: Request):
     return templates.TemplateResponse(
         "home.html", context={"request": request, "sentiments": sentiments}
     )
+
+@router.post("/")
+async def submit_sentiment(request: Request, background_tasks: BackgroundTasks
+                           , content: str = Form(...), description: str = Form(...)):
+    
+    payload = SentimentPayloadSchema(content=content, description=description)
+    sentiment_id = await post(payload)
+    
+    background_tasks.add_task(predict_sentiment, sentiment_id, payload.content)
+    
+    return RedirectResponse("/", status_code=status.HTTP_302_FOUND)

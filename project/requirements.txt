@@ -14,3 +14,4 @@ black==21.6b0
 isort==5.9.1
 tensorflow==2.6.0
 tensorflow-datasets==4.4.0
+python-multipart==0.0.5
