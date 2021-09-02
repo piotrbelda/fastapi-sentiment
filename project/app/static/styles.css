@@ -71,3 +71,8 @@ h3 {
     margin: 40px auto 40px auto;
     border: 5px black solid;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

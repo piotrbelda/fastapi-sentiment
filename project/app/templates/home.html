@@ -33,6 +33,7 @@
     </div>
 
     {% for sentiment in sentiments %}
+    <a href="{{ url_for('read_sentiment', id=sentiment.id) }}">
     <div id="sentiment" class="{{ sentiment.sentiment + 'hov' }}">
         <h3>{{ sentiment.content }}</h3>
         <h4>description: {{ sentiment.description }}</h5>
@@ -44,6 +45,7 @@
             <img id="badge" src="{{ url_for('static', path='img/negative.png') }}">
         {% endif %}
     </div>
+    </a>
     {% endfor %}
 
     <div id="sub">
