@@ -33,8 +33,8 @@
     </div>
 
     {% for sentiment in sentiments %}
-    <a href="{{ url_for('read_sentiment', id=sentiment.id) }}">
-    <div id="sentiment" class="{{ sentiment.sentiment + 'hov' }}">
+    <div id="sentiment" class="{{ sentiment.sentiment + 'hov' }}"
+     onclick="location.href='{{ url_for('read_sentiment', id=sentiment.id) }}'">
         <h3>{{ sentiment.content }}</h3>
         <h4>description: {{ sentiment.description }}</h5>
         <h4>sentiment: <span class="{{ sentiment.sentiment }}">{{ sentiment.sentiment.upper() }}</span></h5>
@@ -44,19 +44,23 @@
         {% else %}
             <img id="badge" src="{{ url_for('static', path='img/negative.png') }}">
         {% endif %}
+        
     </div>
-    </a>
+    <button class="button" type="submit" style="display: block; margin-left:auto; margin-right:auto"
+    onclick="location.href='{{ url_for('delete_button', id=sentiment.id) }}'"
+    >DELETE</button>
     {% endfor %}
 
     <div id="sub">
         <form method="POST" action="/">
             <h3>SUBMIT YOUR SENTIMENT!</h3>
-            <label for="content">CONTENT: </label>
-            <input name="content" placeholder="Your sentiment">
+            <label class="label" for="content">CONTENT: </label>
+            <input class="input" name="content" placeholder="Your sentiment">
             <br>
-            <label for="description">DESCRIPTION: </label>
-            <input name="description" placeholder="Your description">
-            <button type="submit">SUBMIT</button>
+            <label class="label" for="description">DESCRIPTION: </label>
+            <input class="input" name="description" placeholder="Your description" style="width: 30%;">
+            <br>
+            <button class="button" type="submit">SUBMIT</button>
         </form>
     </div>
 
