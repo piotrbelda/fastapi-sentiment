@@ -22,7 +22,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> 
 
     <!--External .css stylesheet-->
     <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" type="text/css">
@@ -53,7 +57,7 @@
 
     <div id="sub">
         <form method="POST" action="/">
-            <h3>SUBMIT YOUR SENTIMENT!</h3>
+            <h3 style="font-size: 30px;">SUBMIT YOUR SENTIMENT!</h3>
             <label class="label" for="content">CONTENT: </label>
             <input class="input" name="content" placeholder="Your sentiment">
             <br>
@@ -63,6 +67,96 @@
             <button class="button" type="submit">SUBMIT</button>
         </form>
     </div>
+
+    <h3 class="headerDescription">How does it work?</h3>
+
+    <p class="description">You can easily in a second predict sentiment of your sentence! This application was designed with usage of REST principles,
+        where you are able to perform CRUD operations, likely for typical APIs. To make a prediction you can fill in a form
+        on this webpage or execute a specific command in terminal:
+        <br>
+        <span class="command">$ http --json POST http://sentiment-fastapi.herokuapp.com/sentiments/ content="/your_sentiment/>" description="/your_description/"</span>
+        <br>
+        Click <a href="{{ url_for('read_all_sentiments') }}">HERE</a> to get a list of all sentiments created so far in JSON format or type in shell:
+        <br>
+        <span class="command">$ http GET http://sentiment-fastapi.herokuapp.com/sentiments/</span>
+        <br>
+        You can also take a deeper look into a specific sentiment details 
+        (also in JSON format) by clicking sentiment element on this webpage or try running in command line:
+        <br>
+        <span class="command">$ http GET http://sentiment-fastapi.herokuapp.com/sentiments/{id}/</span>
+        <br>
+        If you want to delete sentiment just hit a button or run in terminal:
+        <br>
+        <span class="command">$ http DELETE http://sentiment-fastapi.herokuapp.com/sentiments/{id}/</span>
+        <br>
+        You can also perform update operation by typing in a shell:
+        <br>
+        <span class="command">$ http GET http://sentiment-fastapi.herokuapp.com/sentiments/{id}/ content="/your_sentiment/>" description="/your_description/"</span>
+    </p>
+
+    <h3 class="headerDescription">Technology stack</h3>
+
+    <div class="container">
+            <p class="tech-p">App core structure:</p>
+        <div>
+            <div class="tech-div">
+                <img class="technology" src="{{ url_for('static', path='img/python.png') }}">
+                <h5>Python 3.9</h6>    
+            </div>
+            <div class="tech-div">
+                <img class="technology" src="{{ url_for('static', path='img/fastapi.png') }}">
+                <h5>FastAPI</h6> 
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <p class="tech-p">Sentiment predictor:</p>
+    <div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/tensorflow2.png') }}">
+            <h5>Tensorflow 2.6</h6>    
+        </div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/numpy.png') }}">
+            <h5>NumPy</h6> 
+        </div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/pandas.png') }}">
+            <h5>Pandas</h6> 
+        </div>
+    </div>
+    </div>
+    
+
+    <div class="container">
+        <p class="tech-p">Page layout:</p>
+    <div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/html5.png') }}">
+            <h5>HTML5</h6>    
+        </div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/css3.png') }}">
+            <h5>CSS3</h6> 
+        </div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/javascript.png') }}">
+            <h5>JavaScript</h6> 
+        </div>
+        <div class="tech-div">
+            <img class="technology" src="{{ url_for('static', path='img/jinja2.png') }}">
+            <h5>Jinja2</h6> 
+        </div>
+    </div>
+    </div>
+
+    <h3 class="headerDescription">There is more...</h3>
+    <p class="description">
+        If you want to check out my predicting model & training process, see Jupyter Notebook
+         <a href="">file</a>
+          fore more 😉.
+    </p>
 
     <script src="{{ url_for('static', path='script.js') }}"></script>
 </body>

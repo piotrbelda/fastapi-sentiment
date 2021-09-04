@@ -70,6 +70,8 @@ h3 {
     text-align: center;
     margin: 40px auto 40px auto;
     border: 5px black solid;
+    width: 90%;
+    border-radius: 20px;
 }
 
 a {
@@ -100,4 +102,53 @@ a {
 
 .label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.headerDescription {
+    font-size: 36px;
+    text-align: center;
+    color: white;
+}
+
+.description {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: left;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 150%;
+    font-size: 20px;
+}
+
+.command {
+    background-color: darkgray;
+    color:darkgoldenrod;
+}
+
+.technology {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
+
+.tech-div {
+    display: inline-block;
+    text-align: center;
+    margin: 20px 50px 20px 50px;
+}
+
+.container {
+    margin: 30px auto 30px auto;
+    text-align: center;
+}
+
+h5 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: ghostwhite;
+}
+
+.tech-p {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    color:gold;
 }
