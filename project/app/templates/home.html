@@ -35,10 +35,18 @@
     <div class="header">
         Sentiment Analysis API with TensorFlow 2.x & FastAPI
     </div>
+    
+    
+    <div id="checkbox">
+        <label for="hideNegative" class="hideBox">Hide sentiments</label>
+        <input type="checkbox" name="hideNegative" id="hideNegative">
+    </div>
 
+    <div id="sentiments">
     {% for sentiment in sentiments %}
-    <div id="sentiment" class="{{ sentiment.sentiment + 'hov' }}"
-     onclick="location.href='{{ url_for('read_sentiment', id=sentiment.id) }}'">
+    <div id="sentiment-wrapper">
+        <div id="sentiment" class="{{ sentiment.sentiment + 'hov' }}"
+        onclick="location.href='{{ url_for('read_sentiment', id=sentiment.id) }}'">
         <h3>{{ sentiment.content }}</h3>
         <h4>description: {{ sentiment.description }}</h5>
         <h4>sentiment: <span class="{{ sentiment.sentiment }}">{{ sentiment.sentiment.upper() }}</span></h5>
@@ -48,12 +56,18 @@
         {% else %}
             <img id="badge" src="{{ url_for('static', path='img/negative.png') }}">
         {% endif %}
-        
+        </div>
+
+        <button class="button" type="submit" style="display: block; margin: 0px auto 10px auto;"
+        onclick="location.href='{{ url_for('delete_button', id=sentiment.id) }}'">DELETE</button>
+
     </div>
-    <button class="button" type="submit" style="display: block; margin-left:auto; margin-right:auto"
-    onclick="location.href='{{ url_for('delete_button', id=sentiment.id) }}'"
-    >DELETE</button>
+    
+
+    
+
     {% endfor %}
+    </div>
 
     <div id="sub">
         <form method="POST" action="/">

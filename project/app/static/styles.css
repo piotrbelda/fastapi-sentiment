@@ -21,7 +21,7 @@ html, body {
 
 #sentiment {
     width: 65%;
-    margin: 20px auto 20px auto;
+    margin: 20px auto 10px auto;
     text-align: center;
     border: blue 5px solid;
     border-radius: 10px;
@@ -151,4 +151,14 @@ h5 {
     font-family: 'Anton', sans-serif;
     font-size: 22px;
     color:gold;
+}
+
+#checkbox {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hideBox {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 20px;
 }
